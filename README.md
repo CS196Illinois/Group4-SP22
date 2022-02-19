@@ -1,5 +1,5 @@
 # Group 4
-Group Name: Team MergeSort
+Group Name: Movie Buffs
 
 [MVP Link](https://docs.google.com/document/d/1TyO56xbqj8NLSjDOJTlR3kxdLZn9bNO0Mvkdc5sePcI/edit?usp=sharing)
 
