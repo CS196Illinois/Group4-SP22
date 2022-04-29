@@ -1,5 +1,9 @@
 # Group 4
+<<<<<<< HEAD
 Group Name: Team Movie Buffs
+=======
+Group Name: Movie Buffs
+>>>>>>> d029c73787ce3813364c3617246fa6df3b5f372f
 
 [MVP Link](https://docs.google.com/document/d/1TyO56xbqj8NLSjDOJTlR3kxdLZn9bNO0Mvkdc5sePcI/edit?usp=sharing)
 
