@@ -1,6 +1,9 @@
 from msilib import Table
 from unicodedata import name
 from keywords import extractors
+import pandas as pd
+import random
+import csv
 
 class whytry:
     def __init__(self, script):
@@ -23,6 +26,28 @@ def guess_word(script):
                 final_word[y] = guess_word[1]
     sorted_keys = sorted(final_word)
     return sorted_keys[0:3]
-script = "Christopher Nolan reprised his duties as director, and brought his brother, Jonathan, to co-write the script for the second installment. The Dark Knight featured Christian Bale reprising his role as Batman/Bruce Wayne, Heath Ledger as The Joker, and Aaron Eckhart as Harvey Dent / Two-Face. Katie Holmes turned down her role as Rachel, and Maggie Gyllenhaal was cast instead. Principal photography began in April 2007 in Chicago and concluded in November. Other locations included Pinewood Studios, Ministry of Sound in London and Hong Kong. On January 22, 2008, after he had completed filming The Dark Knight, Ledger died from an accidental overdose of prescription medication. Warner Bros. had created a viral marketing campaign for The Dark Knight, developing promotional websites and trailers highlighting screen shots of Ledger as the Joker, but after Ledger's death, the studio refocused its promotional campaign.[107][108] The film depicts Batman fighting The Joker, aided by the prosecution of charismatic District Attorney Harvey Dent. The Joker tests Batman's resolve when he causes Rachel's death and Dent's transformation into the disfigured criminal Two-Face. Although Batman is able to stop the Joker from forcing two ferries - one loaded with civilians and the other with prisoners - to destroy each other, he is forced to take the blame for the murders committed by Dent to ensure that Gotham's citizens do not lose hope for the future. The film received broad critical acclaim,[109][110][111] and set numerous records during its theatrical run.[112] With just over $1 billion in revenue worldwide, it became the 4th-highest-grossing film of all time, unadjusted for inflation.[113] The film received eight Academy Award nominations; it won the award for Best Sound Editing and Ledger was posthumously awarded Best Supporting Actor. Critics and film writers often cite The Dark Knight as one of the best films of the 2000s."
-tryhard = guess_word(script)
-print(tryhard)
+
+
+
+# three word function 
+
+data = []
+filename = 'file_name.csv'
+with open(filename, 'r') as csvfile:
+    datareader = csv.reader(csvfile)
+    next(datareader)
+    i = 0
+    for row in datareader:
+        print("processing file " + str(i) + " out of 1161")
+        try:
+            script_file = open("cs124dataset/" +row[2], 'r', encoding='utf-8')
+            movie_text = script_file.read()
+            words = movie_text.split()
+            randomwords = [random.choice(words) for i in range(300)]
+            threewords = guess_word(" ".join(randomwords))
+            data.append([row[0], row[1], threewords])
+        except:
+            print("file " + str(i) + " didn't work")
+        i += 1
+df = pd.DataFrame(data, columns = ["Movie_Title", "Year", "ThreeWords"])
+df.to_csv("threewords.csv")
